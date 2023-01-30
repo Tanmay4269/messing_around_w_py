@@ -3,6 +3,8 @@
 #include <unordered_map>
 using namespace std;
 
+int my_size = 100'000;
+
 unordered_map<int, int> memo;
 
 int collatz(int n) {
@@ -18,16 +20,12 @@ int collatz(int n) {
 }
 
 void foo() {
-    // Open the file in write mode
     ofstream file("coords.csv");
     
     file << "x,y\n";
 
-    for (int i = 2; i < 200'000; i++) {
-        int count = collatz(i);
-
-        file << i << "," << count << "\n";
-    }
+    for (int i = 2; i < my_size; i++)
+        file << i << "," << collatz(i) << "\n";
 
     file.close();
 }
